@@ -8,6 +8,7 @@ public class Person implements PersonInterface{
     private String Username;
     private String Password;
     private String id;
+    public int joined_classes_count=0;
     private List<Classroom> JoinedClasses = new ArrayList<Classroom>();
     private List<Person> personList = new ArrayList<Person>();
 
@@ -75,8 +76,10 @@ public class Person implements PersonInterface{
     public List<Classroom> getJoinedClasses() {
         return JoinedClasses;
     }
+
     public void JoinClassroom(Classroom e) {
         JoinedClasses.add(e);
+        joined_classes_count++;
     }
     public void removeClassroom(Classroom c){
         JoinedClasses.remove(c);

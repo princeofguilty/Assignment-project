@@ -14,7 +14,8 @@
         android:theme="@style/Theme.SocketTest"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".Classrooms_Activity"></activity>
+        <activity android:name=".Classroom_Overview"></activity>
+        <activity android:name=".Classrooms_Activity" />
         <activity android:name=".Register_Activity" />
         <activity android:name=".MainActivity">
             <intent-filter>

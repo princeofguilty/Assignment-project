@@ -51,6 +51,17 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("master", "2.5");
                 Task.doInBackground(username_s, password_s, "LOGIN");
                 Log.d("master", "3");
+                while (true){
+                    if (LOGIN_TCP.Status==1) {
+                        Log.d("test_tcp", "about");
+                        Intent i = new Intent(MainActivity.this, Classrooms_Activity.class);
+                        i.putExtra("username", username_s);
+                        i.putExtra("password", password_s);
+                        startActivity(i);
+                        LOGIN_TCP.Status = 0;
+                        break;
+                    }
+                }
             }
         }).start();
 

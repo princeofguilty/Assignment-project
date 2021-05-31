@@ -7,7 +7,7 @@
     tools:context=".Classrooms_Activity">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/Classrooms_views"
+        android:id="@+id/Classrooms_Recycleview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:scrollbars="vertical"
