@@ -2,14 +2,13 @@ package com.example.sockettest;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.os.AsyncTask;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.net.Socket;
 
 
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         Log.d("master", e.toString());
                     }
-                BackgroundTask Task = new BackgroundTask();
+                LOGIN_TCP Task = new LOGIN_TCP();
                 String username_s = Username.getText().toString();
                 String password_s = Password.getText().toString();
                 Log.d("master", "2.5");
@@ -67,41 +66,34 @@ public class MainActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         Log.d("master", e.toString());
                     }
-                BackgroundTask Task = new BackgroundTask();
+                REG_TCP Task = new REG_TCP();
                 String username_s = Username.getText().toString();
                 String password_s = Password.getText().toString();
                 Log.d("master", "2.5");
                 Task.doInBackground(username_s, password_s, "REGISTER");
                 Log.d("master", "3");
+                while (true){
+                    if (REG_TCP.Status==1) {
+                        Log.d("test_tcp", "about");
+                        Intent i = new Intent(MainActivity.this, Register_Activity.class);
+                        i.putExtra("username", username_s);
+                        i.putExtra("password", password_s);
+                        startActivity(i);
+                        REG_TCP.Status = 0;
+                        break;
+                    }
+                }
             }
         }).start();
+//        Context context = getApplicationContext();
+//        CharSequence text = "Hello toast!";
+//        int duration = Toast.LENGTH_SHORT;
+//        while (STD_TCP.cont==0){
+//            Toast toast = Toast.makeText(context, text, duration);
+//            toast.show();
+//        }
 
     }
-}
-
-
-class BackgroundTask extends AsyncTask<String, Void, Void>{
-
-    PrintWriter writer;
-
-    @Override
-    protected Void doInBackground(String... voids) {
-
-        try{
-            String Username=voids[0];
-            String Password=voids[1];
-            writer = new PrintWriter(MainActivity.s.getOutputStream());
-            writer.write( voids[2]+"> "+Username+':'+Password+'\n');
-            Log.d("master", Username);
-            writer.flush();
-            Log.d("master", "5");
-        }catch (Exception e){
-            Log.d("master", "6");
-            Log.d("master", String.valueOf(e));
-        }
-
-        return null;
-    }
-
 
 }
+

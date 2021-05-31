@@ -18,6 +18,14 @@ public class Person implements PersonInterface{
         setId(Id);
     }
 
+
+    public Person(String Name, String Id, String username, String password){
+        setName(Name);
+        setId(Id);
+        setPassword(password);
+        setUsername(username);
+    }
+
     public boolean checkUsername(String username) {
         for(Person p: personList){
             if (p.getUsername().equals(username)){

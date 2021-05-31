@@ -16,6 +16,10 @@ public class Teacher extends Person{
         super(Name, id);
         teacherList.add(this);
     }
+    public Teacher(String Name, String id, String username, String password) {
+        super(Name, id, username, password);
+        teacherList.add(this);
+    }
 
     @Override
     public void JoinClassroom(Classroom e) {

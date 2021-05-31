@@ -11,10 +11,10 @@ public class Student extends Person {
         super(Name, Id);
         studentList.add(this);
     }
-    public Student(String Name, String Id, String school){
-        super(Name, Id);
+    public Student(String Name, String Id, String username, String password){
+        super(Name, Id, username, password);
         studentList.add(this);
-        setSchool(school);
+        setSchool("aast");
     }
 
     public void setSchool(String school) {
