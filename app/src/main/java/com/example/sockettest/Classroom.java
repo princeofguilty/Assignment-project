@@ -7,6 +7,7 @@ public class Classroom implements java.io.Serializable {
     private String name="New Class";
     private String id;
     private String Describtion;
+    private int AssignmentsCount=0;
     private static List<Classroom> clist=new ArrayList<Classroom>();
     private List<Student> studentsList= new ArrayList<Student>();
     private List<Teacher> teachersList= new ArrayList<Teacher>();
@@ -85,6 +86,22 @@ public class Classroom implements java.io.Serializable {
 
     public void addAssignment(Assignment a){
         listofAssignments.add(a);
+        AssignmentsCount++;
     }
 
+    public List<Assignment> getListofAssignments(){
+        return listofAssignments;
+    }
+
+    public int getAssignmentsCount(){
+        return AssignmentsCount;
+    }
+
+    public static Classroom findbyid(String id){
+        for(Classroom c: Classroom.clist){
+            if (c.getId().equals(id))
+                return c;
+        }
+        return null;
+    }
 }

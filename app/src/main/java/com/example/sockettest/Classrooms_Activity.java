@@ -33,6 +33,9 @@ public class Classrooms_Activity extends AppCompatActivity {
         p.JoinClassroom(c);
         p.JoinClassroom(c);
         p.JoinClassroom(c);
+        Assignment as = new Assignment(new Teacher(), c, "mega", "test");
+        as.setAssignId("123");
+        c.addAssignment(as);
         Classrooms_names = new String[p.joined_classes_count];
         Classrooms_Descriptions = new String[p.joined_classes_count];
         Classrooms_Id = new String[p.joined_classes_count];

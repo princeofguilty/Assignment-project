@@ -1,6 +1,5 @@
 package com.example.sockettest;
 
-import com.example.sockettest.*;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
@@ -13,7 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-public class Classroom_adapter extends RecyclerView.Adapter<Classroom_adapter.MyViewHolder> {
+public class Classroom_adapter extends RecyclerView.Adapter<Classroom_adapter.MyViewHolder_classroom> {
     Context mContext;
     String Class_name[], Class_description[], Class_id[];
 
@@ -27,15 +26,15 @@ public class Classroom_adapter extends RecyclerView.Adapter<Classroom_adapter.My
 
     @NonNull
     @Override
-    public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MyViewHolder_classroom onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.classroom_row_item, parent, false);
-        MyViewHolder myViewHolder = new MyViewHolder(view);
-        return myViewHolder;
+        MyViewHolder_classroom myViewHolderClassroom = new MyViewHolder_classroom(view);
+        return myViewHolderClassroom;
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Classroom_adapter.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull MyViewHolder_classroom holder, int position) {
         holder.name_view.setText(Class_name[position]);
         holder.desc_view.setText(Class_description[position]);
         holder.id_view.setText(Class_id[position]);
@@ -58,15 +57,15 @@ public class Classroom_adapter extends RecyclerView.Adapter<Classroom_adapter.My
         return Class_name.length;
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder{
+    public class MyViewHolder_classroom extends RecyclerView.ViewHolder{
         TextView name_view, desc_view, id_view;
         ConstraintLayout CL;
-        public MyViewHolder(@NonNull View itemView) {
+        public MyViewHolder_classroom(@NonNull View itemView) {
             super(itemView);
-            name_view = itemView.findViewById(R.id.Class_name);
-            desc_view = itemView.findViewById(R.id.Class_description);
-            id_view = itemView.findViewById(R.id.Class_id);
-            CL = (ConstraintLayout) itemView.findViewById(R.id.Class_Constraint);
+            name_view = itemView.findViewById(R.id.Assign_title);
+            desc_view = itemView.findViewById(R.id.Assign_description);
+            id_view = itemView.findViewById(R.id.Assign_id);
+            CL = (ConstraintLayout) itemView.findViewById(R.id.Assign_info_Constraint);
         }
     }
 }

@@ -2,14 +2,14 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/Class_Constraint"
+    android:id="@+id/Assign_info_Constraint"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="true"
     android:onClick="Class_Overview">
 
     <TextView
-        android:id="@+id/Class_name"
+        android:id="@+id/Assign_title"
         android:layout_width="0dp"
         android:layout_height="50dp"
         android:fontFamily="sans-serif-condensed-medium"
@@ -18,7 +18,7 @@
         android:text="TextView"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="24sp"
-        app:layout_constraintEnd_toStartOf="@+id/Class_id"
+        app:layout_constraintEnd_toStartOf="@+id/Assign_id"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -30,7 +30,7 @@
         app:srcCompat="@drawable/ic_launcher_foreground" />
 
     <TextView
-        android:id="@+id/Class_description"
+        android:id="@+id/Assign_description"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:fontFamily="sans-serif-medium"
@@ -42,19 +42,19 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/imageView2"
-        app:layout_constraintTop_toBottomOf="@+id/Class_name" />
+        app:layout_constraintTop_toBottomOf="@+id/Assign_title" />
 
     <TextView
-        android:id="@+id/Class_id"
+        android:id="@+id/Assign_id"
         android:layout_width="86dp"
         android:layout_height="26dp"
         android:layout_marginStart="1dp"
         android:text="TextView"
         android:textSize="16sp"
         android:textStyle="italic"
-        app:layout_constraintBottom_toTopOf="@+id/Class_description"
+        app:layout_constraintBottom_toTopOf="@+id/Assign_description"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/Class_name"
+        app:layout_constraintStart_toEndOf="@+id/Assign_title"
         app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
