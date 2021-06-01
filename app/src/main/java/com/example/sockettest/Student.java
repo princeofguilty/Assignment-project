@@ -11,6 +11,12 @@ public class Student extends Person {
         super(Name, Id);
         studentList.add(this);
     }
+    public Student(int type,String Name, String Id, String username, String password){
+        super(type,Name, Id, username, password);
+        studentList.add(this);
+        setSchool("aast");
+    }
+
     public Student(String Name, String Id, String username, String password){
         super(Name, Id, username, password);
         studentList.add(this);

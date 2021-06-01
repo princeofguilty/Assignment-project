@@ -18,12 +18,12 @@ class REG_TCP extends AsyncTask<String, Void, Void> {
     @Override
     protected Void doInBackground(String... voids) {
         try{
-            String Username=voids[0];
-            String Password=voids[1];
-            writer = new PrintWriter(s.getOutputStream());
-            writer.write( voids[2]+"> "+Username+':'+Password+'\n');
-            Log.d("master", Username);
-            writer.flush();
+            //String Username=voids[0];
+            //String Password=voids[1];
+            /*writer = new PrintWriter(s.getOutputStream());
+            writer.write( voids[0]+"> "+'\n');
+            //Log.d("master", Username);
+            writer.flush();*/
             Log.d("master", "5");
         }catch (Exception e){
             Log.d("master", "6");
@@ -77,11 +77,11 @@ class LOGIN_TCP extends AsyncTask<String, Void, Void> {
     }
 }
 
-class Student_TCP extends AsyncTask<Student, Void, Void> {
+class Student_TCP extends AsyncTask<Person, Void, Void> {
     PrintWriter writer;
     Socket s = MainActivity.s;
     @Override
-    protected Void doInBackground(Student... student) {
+    protected Void doInBackground(Person... student) {
         try{
             OutputStream outputStream = s.getOutputStream();
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
@@ -94,11 +94,11 @@ class Student_TCP extends AsyncTask<Student, Void, Void> {
     }
 }
 
-class Teacher_TCP extends AsyncTask<Teacher, Void, Void> {
+class Teacher_TCP extends AsyncTask<Person, Void, Void> {
     PrintWriter writer;
     Socket s = MainActivity.s;
     @Override
-    protected Void doInBackground(Teacher... teacher) {
+    protected Void doInBackground(Person... teacher) {
         try{
             OutputStream outputStream = s.getOutputStream();
             ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
@@ -150,7 +150,7 @@ public class Manage_TCP {
             public void run(){
                 if (REG_TCP.s==null)
                     try {
-                        REG_TCP.s = new Socket("192.168.1.4",9999);
+                        REG_TCP.s = new Socket("192.168.1.5",9999);
                     } catch (IOException e) {
                         Log.d("master", e.toString());
                     }

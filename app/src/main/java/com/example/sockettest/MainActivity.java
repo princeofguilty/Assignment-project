@@ -27,12 +27,13 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        try {
-            if(s!=null)
-                s.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+            if(s!=null) {
+                try {
+                    s.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
     }
 
     public void Login(View v){
@@ -41,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("master", "2");
                 if (s==null)
                     try {
-                        s = new Socket("192.168.1.4",9999);
+                        s = new Socket("192.168.1.5",9999);
                     } catch (IOException e) {
                         Log.d("master", e.toString());
                     }
@@ -73,22 +74,22 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("master", "2");
                 if (s==null)
                     try {
-                        s = new Socket("192.168.1.4",9999);
+                        s = new Socket("192.168.1.5",9999);
                     } catch (IOException e) {
                         Log.d("master", e.toString());
                     }
                 REG_TCP Task = new REG_TCP();
-                String username_s = Username.getText().toString();
-                String password_s = Password.getText().toString();
+                //String username_s = Username.getText().toString();
+                //String password_s = Password.getText().toString();
                 Log.d("master", "2.5");
-                Task.doInBackground(username_s, password_s, "REGISTER");
+                Task.doInBackground("REGISTER");
                 Log.d("master", "3");
                 while (true){
                     if (REG_TCP.Status==1) {
                         Log.d("test_tcp", "about");
                         Intent i = new Intent(MainActivity.this, Register_Activity.class);
-                        i.putExtra("username", username_s);
-                        i.putExtra("password", password_s);
+                        //i.putExtra("username", username_s);
+                        //i.putExtra("password", password_s);
                         startActivity(i);
                         REG_TCP.Status = 0;
                         break;

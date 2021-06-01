@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Person implements PersonInterface{
+    private int type;
     private String name;
     private String Username;
     private String Password;
@@ -19,6 +20,13 @@ public class Person implements PersonInterface{
         setId(Id);
     }
 
+    public Person(int type, String name, String username, String password, String id) {
+        this.type = type;
+        this.name = name;
+        Username = username;
+        Password = password;
+        this.id = id;
+    }
 
     public Person(String Name, String Id, String username, String password){
         setName(Name);

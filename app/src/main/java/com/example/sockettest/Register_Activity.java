@@ -12,6 +12,7 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 
 public class Register_Activity extends AppCompatActivity {
+private int person;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,10 +25,17 @@ public class Register_Activity extends AppCompatActivity {
         }
     }
 
-    public void Button_text(View v){
+   /* public void Button_text(View v){
         RadioButton rb = (RadioButton)v;
         Button b = findViewById(R.id.RegisterButton);
         b.setText(("Register "+rb.getText().toString()));
+    }*/
+   public void Button_text(View v){
+       person=0;
+   }
+
+    public void Button_text1(View v){
+       person=1;
     }
 
     public void Register_button_call(View v){
@@ -41,16 +49,18 @@ public class Register_Activity extends AppCompatActivity {
         box = findViewById(R.id.RegisterPassword);
         String password = box.getText().toString();
         String type = b.getText().toString();
-        Log.d("tcp_test", "herex");
-        if(type.toLowerCase().equals("register student")){
+        Log.d("tcp_test", "here");
+        //if(type.toLowerCase().equals("register student"))
+         if (person==0){
             Log.d("tcp_test", "here");
-            Student s = new Student(name, id, username, password);
+            Person s = new Student(person,name, id, username, password);
             Student_TCP st = new Student_TCP();
             st.doInBackground(s);
             Log.d("tcp_test", st.toString());
         }
-        else if(type.toLowerCase().equals("register teacher")){
-            Teacher s = new Teacher(name, id, username, password);
+        //else if(type.toLowerCase().equals("register teacher"))
+        else if (person==1){
+            Person s = new Teacher(person,name, id, username, password);
             Teacher_TCP st = new Teacher_TCP();
             st.doInBackground(s);
             Log.d("tcp_test", st.toString());

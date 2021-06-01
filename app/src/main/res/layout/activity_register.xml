@@ -87,7 +87,7 @@
             android:id="@+id/isTeacher"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:onClick="Button_text"
+            android:onClick="Button_text1"
             android:text="Teacher" />
     </RadioGroup>
 
