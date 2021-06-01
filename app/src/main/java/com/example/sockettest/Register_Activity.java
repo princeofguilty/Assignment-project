@@ -4,12 +4,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.sockettest.*;
 
 import android.app.ActionBar;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+
+import java.io.IOException;
+import java.net.Socket;
 
 public class Register_Activity extends AppCompatActivity {
 private int person;
@@ -53,10 +57,24 @@ private int person;
         //if(type.toLowerCase().equals("register student"))
          if (person==0){
             Log.d("tcp_test", "here");
-            Person s = new Student(person,name, id, username, password);
-            Student_TCP st = new Student_TCP();
-            st.doInBackground(s);
-            Log.d("tcp_test", st.toString());
+            Student p = new Student(person,name, id, username, password);
+             new Thread(new Runnable(){
+                 public void run(){
+                     Log.d("master", "2");
+                     if (MainActivity.s==null)
+                         try {
+                             MainActivity.s = new Socket("192.168.1.5",9994);
+                         } catch (IOException e) {
+                             Log.d("master", e.toString());
+                         }
+                     Student_TCP st = new Student_TCP();
+                     //String username_s = Username.getText().toString();
+                     //String password_s = Password.getText().toString();
+                     Log.d("master", "2.5");
+                     st.doInBackground(p);
+                     Log.d("master", "3");
+                     }
+             }).start();
         }
         //else if(type.toLowerCase().equals("register teacher"))
         else if (person==1){

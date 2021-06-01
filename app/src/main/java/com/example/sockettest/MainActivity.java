@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("master", "2");
                 if (s==null)
                     try {
-                        s = new Socket("192.168.1.5",9999);
+                        s = new Socket("192.168.1.5",9994);
                     } catch (IOException e) {
                         Log.d("master", e.toString());
                     }
@@ -74,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("master", "2");
                 if (s==null)
                     try {
-                        s = new Socket("192.168.1.5",9999);
+                        s = new Socket("192.168.1.5",9994);
                     } catch (IOException e) {
                         Log.d("master", e.toString());
                     }

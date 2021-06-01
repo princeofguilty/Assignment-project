@@ -1,10 +1,11 @@
 package com.example.sockettest;
 import android.os.AsyncTask;
 import android.util.Log;
-
+import com.example.sockettest.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
@@ -24,20 +25,25 @@ class REG_TCP extends AsyncTask<String, Void, Void> {
             writer.write( voids[0]+"> "+'\n');
             //Log.d("master", Username);
             writer.flush();*/
+            Packet p=new Packet(voids[0]);
+            OutputStream outputStream = s.getOutputStream();
+            ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
+            objectOutputStream.writeObject(p);
             Log.d("master", "5");
         }catch (Exception e){
             Log.d("master", "6");
             Log.d("master", String.valueOf(e));
         }
-        String fromServer = null;
+        Packet fromServer = null;
         try {
-            BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
-            fromServer = in.readLine();
-        } catch (IOException e) {
+            ObjectInputStream objectInputStream = new ObjectInputStream(s.getInputStream());
+            fromServer=(Packet)objectInputStream.readObject();
+            Log.d("test_object",fromServer.msg);
+            if(fromServer.msg.equals("t")) {
+                Status = 1;
+            }
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
-        }
-        if(fromServer.equals("t")) {
-            Status = 1;
         }
 //            Log.d("tcp_test", "true");
         return null;
@@ -150,7 +156,7 @@ public class Manage_TCP {
             public void run(){
                 if (REG_TCP.s==null)
                     try {
-                        REG_TCP.s = new Socket("192.168.1.5",9999);
+                        REG_TCP.s = new Socket("192.168.1.5",9992);
                     } catch (IOException e) {
                         Log.d("master", e.toString());
                     }
