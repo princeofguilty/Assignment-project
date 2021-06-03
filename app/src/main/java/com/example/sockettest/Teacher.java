@@ -8,21 +8,21 @@ public class Teacher extends Person{
     public static List<Teacher> teacherList = new ArrayList<Teacher>();
     private List<Assignment> ListofAssignments = new ArrayList<Assignment>();
 
-    public Teacher(){
-        super();
+    public Teacher(String msg){
+        super(msg);
         teacherList.add(this);
     }
-    public Teacher(String Name, String id) {
-        super(Name, id);
+    public Teacher(String msg,String Name, String id) {
+        super(msg,Name, id);
         teacherList.add(this);
     }
-    public Teacher(String Name, String id, String username, String password) {
-        super(Name, id, username, password);
+    public Teacher(String msg,String Name, String id, String username, String password) {
+        super(msg,Name, id, username, password);
         teacherList.add(this);
     }
 
-    public Teacher(int type,String Name, String id, String username, String password) {
-        super(type,Name, id, username, password);
+    public Teacher(String msg,int type,String Name, String id, String username, String password) {
+        super(msg,type,Name, id, username, password);
         teacherList.add(this);
     }
 

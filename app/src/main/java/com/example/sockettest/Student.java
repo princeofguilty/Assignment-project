@@ -7,18 +7,18 @@ public class Student extends Person {
     private String School;
     public static List<Student> studentList = new ArrayList<Student>();
 
-    public Student(String Name, String Id){
-        super(Name, Id);
+    public Student(String msg,String Name, String Id){
+        super(msg,Name, Id);
         studentList.add(this);
     }
-    public Student(int type,String Name, String Id, String username, String password){
-        super(type,Name, Id, username, password);
+    public Student(String msg,int type,String Name, String Id, String username, String password){
+        super(msg,type,Name, Id, username, password);
         studentList.add(this);
         setSchool("aast");
     }
 
-    public Student(String Name, String Id, String username, String password){
-        super(Name, Id, username, password);
+    public Student(String msg,String Name, String Id, String username, String password){
+        super(msg,Name, Id, username, password);
         studentList.add(this);
         setSchool("aast");
     }

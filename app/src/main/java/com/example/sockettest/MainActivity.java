@@ -4,11 +4,15 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 
@@ -16,12 +20,27 @@ public class MainActivity extends AppCompatActivity {
 //    @SuppressLint("StaticFieldLeak")
     EditText Username, Password;
     public static Socket s=null;
+    static ObjectOutputStream objectOutputStream;
+    static ObjectInputStream objectInputStream;
+    public static Packet obj;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Username = findViewById(R.id.UsernameField);
         Password = findViewById(R.id.PasswordField);
+        new Thread(new Runnable(){
+            public void run(){
+        if (s==null)
+            try {
+                s = new Socket("192.168.1.5",9999);
+                objectOutputStream = new ObjectOutputStream(s.getOutputStream());
+                objectInputStream = new ObjectInputStream(s.getInputStream());
+            } catch (IOException e) {
+                Log.d("master", e.toString());
+            }
+            }
+        }).start();
         Log.d("master", "1");
     }
     @Override
@@ -42,7 +61,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("master", "2");
                 if (s==null)
                     try {
-                        s = new Socket("192.168.1.5",9994);
+                        s = new Socket("192.168.1.5",9999);
+                        objectOutputStream = new ObjectOutputStream(s.getOutputStream());
+                        objectInputStream = new ObjectInputStream(s.getInputStream());
                     } catch (IOException e) {
                         Log.d("master", e.toString());
                     }
@@ -74,7 +95,9 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("master", "2");
                 if (s==null)
                     try {
-                        s = new Socket("192.168.1.5",9994);
+                        s = new Socket("192.168.1.5",9999);
+                        objectOutputStream = new ObjectOutputStream(s.getOutputStream());
+                        objectInputStream = new ObjectInputStream(s.getInputStream());
                     } catch (IOException e) {
                         Log.d("master", e.toString());
                     }
@@ -82,10 +105,10 @@ public class MainActivity extends AppCompatActivity {
                 //String username_s = Username.getText().toString();
                 //String password_s = Password.getText().toString();
                 Log.d("master", "2.5");
-                Task.doInBackground("REGISTER");
+                Task.doInBackground("connect");
                 Log.d("master", "3");
                 while (true){
-                    if (REG_TCP.Status==1) {
+                   if (REG_TCP.Status==1) {
                         Log.d("test_tcp", "about");
                         Intent i = new Intent(MainActivity.this, Register_Activity.class);
                         //i.putExtra("username", username_s);
@@ -97,13 +120,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }).start();
-//        Context context = getApplicationContext();
-//        CharSequence text = "Hello toast!";
-//        int duration = Toast.LENGTH_SHORT;
-//        while (STD_TCP.cont==0){
-//            Toast toast = Toast.makeText(context, text, duration);
-//            toast.show();
-//        }
+/*        Context context = getApplicationContext();
+        CharSequence text = "Hello toast!";
+        int duration = Toast.LENGTH_SHORT;
+        while (STD_TCP.cont==0){
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }*/
 
     }
 

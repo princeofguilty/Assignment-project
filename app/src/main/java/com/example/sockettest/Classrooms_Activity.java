@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 
 public class Classrooms_Activity extends AppCompatActivity {
-    Person p= new Person("ahmed", "1810", "user", "1234");
+    Person p= new Person(null,"ahmed", "1810", "user", "1234");
     RecyclerView Classrooms_Recyclerview;
     String[] Classrooms_names;
     String[] Classrooms_Descriptions;
@@ -33,7 +33,7 @@ public class Classrooms_Activity extends AppCompatActivity {
         p.JoinClassroom(c);
         p.JoinClassroom(c);
         p.JoinClassroom(c);
-        Assignment as = new Assignment(new Teacher(), c, "mega", "test");
+        Assignment as = new Assignment(new Teacher(null), c, "mega", "test");
         as.setAssignId("123");
         c.addAssignment(as);
         Classrooms_names = new String[p.joined_classes_count];

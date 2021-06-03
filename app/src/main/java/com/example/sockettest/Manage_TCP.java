@@ -26,9 +26,7 @@ class REG_TCP extends AsyncTask<String, Void, Void> {
             //Log.d("master", Username);
             writer.flush();*/
             Packet p=new Packet(voids[0]);
-            OutputStream outputStream = s.getOutputStream();
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-            objectOutputStream.writeObject(p);
+            MainActivity.objectOutputStream.writeObject(p);
             Log.d("master", "5");
         }catch (Exception e){
             Log.d("master", "6");
@@ -36,8 +34,7 @@ class REG_TCP extends AsyncTask<String, Void, Void> {
         }
         Packet fromServer = null;
         try {
-            ObjectInputStream objectInputStream = new ObjectInputStream(s.getInputStream());
-            fromServer=(Packet)objectInputStream.readObject();
+            fromServer=(Packet)MainActivity.objectInputStream.readObject();
             Log.d("test_object",fromServer.msg);
             if(fromServer.msg.equals("t")) {
                 Status = 1;
@@ -83,15 +80,13 @@ class LOGIN_TCP extends AsyncTask<String, Void, Void> {
     }
 }
 
-class Student_TCP extends AsyncTask<Person, Void, Void> {
+class Student_TCP extends AsyncTask<Packet, Void, Void> {
     PrintWriter writer;
     Socket s = MainActivity.s;
     @Override
-    protected Void doInBackground(Person... student) {
+    protected Void doInBackground(Packet... student) {
         try{
-            OutputStream outputStream = s.getOutputStream();
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-            objectOutputStream.writeObject(student[0]);
+            MainActivity.objectOutputStream.writeObject(student[0]);
         }catch (Exception e){
             Log.d("master", "6");
             Log.d("master", String.valueOf(e));
@@ -106,9 +101,7 @@ class Teacher_TCP extends AsyncTask<Person, Void, Void> {
     @Override
     protected Void doInBackground(Person... teacher) {
         try{
-            OutputStream outputStream = s.getOutputStream();
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-            objectOutputStream.writeObject(teacher[0]);
+            MainActivity.objectOutputStream.writeObject(teacher[0]);
         }catch (Exception e){
             Log.d("master", "6");
             Log.d("master", String.valueOf(e));
@@ -123,9 +116,7 @@ class Class_TCP extends AsyncTask<Classroom, Void, Void> {
     @Override
     protected Void doInBackground(Classroom... classroom) {
         try{
-            OutputStream outputStream = s.getOutputStream();
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-            objectOutputStream.writeObject(classroom[0]);
+            MainActivity.objectOutputStream.writeObject(classroom[0]);
         }catch (Exception e){
             Log.d("master", "6");
             Log.d("master", String.valueOf(e));
@@ -139,9 +130,7 @@ class Assignment_TCP extends AsyncTask<Assignment, Void, Void> {
     @Override
     protected Void doInBackground(Assignment... assignment) {
         try{
-            OutputStream outputStream = s.getOutputStream();
-            ObjectOutputStream objectOutputStream = new ObjectOutputStream(outputStream);
-            objectOutputStream.writeObject(assignment[0]);
+            MainActivity.objectOutputStream.writeObject(assignment[0]);
         }catch (Exception e){
             Log.d("master", "6");
             Log.d("master", String.valueOf(e));
@@ -154,12 +143,12 @@ public class Manage_TCP {
     public static void Send_Student(){
         new Thread(new Runnable(){
             public void run(){
-                if (REG_TCP.s==null)
+                /*if (REG_TCP.s==null)
                     try {
                         REG_TCP.s = new Socket("192.168.1.5",9992);
                     } catch (IOException e) {
                         Log.d("master", e.toString());
-                    }
+                    }*/
                 REG_TCP Task = new REG_TCP();
                 Log.d("master", "2.5");
                 Task.doInBackground( "LOGIN");

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.sockettest.*;
 
 import android.app.ActionBar;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.net.Socket;
@@ -57,28 +59,38 @@ private int person;
         //if(type.toLowerCase().equals("register student"))
          if (person==0){
             Log.d("tcp_test", "here");
-            Student p = new Student(person,name, id, username, password);
+            Person per = new Person("register",person,name, id, username, password);
+             MainActivity.obj=per;
              new Thread(new Runnable(){
                  public void run(){
                      Log.d("master", "2");
-                     if (MainActivity.s==null)
+                     /*if (MainActivity.s==null)
                          try {
                              MainActivity.s = new Socket("192.168.1.5",9994);
                          } catch (IOException e) {
                              Log.d("master", e.toString());
-                         }
+                         }*/
                      Student_TCP st = new Student_TCP();
                      //String username_s = Username.getText().toString();
                      //String password_s = Password.getText().toString();
                      Log.d("master", "2.5");
-                     st.doInBackground(p);
+                     st.doInBackground(MainActivity.obj);
+
                      Log.d("master", "3");
-                     }
+                 }
              }).start();
+             CharSequence text;
+             if (person==0)
+                 text = "Student registered sucessfully!";
+             else
+                 text = "Teacher registered sucessfully!";
+             int duration = Toast.LENGTH_SHORT;
+             Toast toast = Toast.makeText(this, text, duration);
+             toast.show();
         }
         //else if(type.toLowerCase().equals("register teacher"))
         else if (person==1){
-            Person s = new Teacher(person,name, id, username, password);
+            Person s = new Teacher("register",person,name, id, username, password);
             Teacher_TCP st = new Teacher_TCP();
             st.doInBackground(s);
             Log.d("tcp_test", st.toString());

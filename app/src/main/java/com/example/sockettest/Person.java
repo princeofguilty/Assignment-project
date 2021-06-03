@@ -1,9 +1,10 @@
 package com.example.sockettest;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Person implements PersonInterface{
+public class Person extends Packet implements PersonInterface {
     private int type;
     private String name;
     private String Username;
@@ -13,14 +14,16 @@ public class Person implements PersonInterface{
     private List<Classroom> JoinedClasses = new ArrayList<Classroom>();
     private List<Person> personList = new ArrayList<Person>();
 
-    public Person(){}
+    public Person(String msg){ super(msg);}
 
-    public Person(String Name, String Id){
+    public Person(String msg,String Name, String Id){
+        super(msg);
         setName(Name);
         setId(Id);
     }
 
-    public Person(int type, String name, String username, String password, String id) {
+    public Person(String msg,int type, String name, String username, String password, String id) {
+        super(msg);
         this.type = type;
         this.name = name;
         Username = username;
@@ -28,7 +31,8 @@ public class Person implements PersonInterface{
         this.id = id;
     }
 
-    public Person(String Name, String Id, String username, String password){
+    public Person(String msg,String Name, String Id, String username, String password){
+        super(msg);
         setName(Name);
         setId(Id);
         setPassword(password);
@@ -43,6 +47,12 @@ public class Person implements PersonInterface{
         }
         return true;
     }
+
+    @Override
+    public String toString() {
+        return "Person{" + "type=" + type + ", name=" + name + ", Username=" + Username + ", Password=" + Password + ", id=" + id + '}';
+    }
+
 
     public void setUsername(String username) {
         Username = username;
