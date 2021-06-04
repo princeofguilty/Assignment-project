@@ -1,6 +1,5 @@
 package com.example.sockettest;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -16,13 +15,13 @@ public class Person extends Packet implements PersonInterface {
 
     public Person(String msg){ super(msg);}
 
-    public Person(String msg,String Name, String Id){
+    public Person(String msg, String username, String password) {
         super(msg);
-        setName(Name);
-        setId(Id);
+        Username = username;
+        Password = password;
     }
 
-    public Person(String msg,int type, String name, String username, String password, String id) {
+    public Person(String msg, int type, String name, String id, String username, String password) {
         super(msg);
         this.type = type;
         this.name = name;

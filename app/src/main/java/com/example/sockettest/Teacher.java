@@ -12,10 +12,7 @@ public class Teacher extends Person{
         super(msg);
         teacherList.add(this);
     }
-    public Teacher(String msg,String Name, String id) {
-        super(msg,Name, id);
-        teacherList.add(this);
-    }
+
     public Teacher(String msg,String Name, String id, String username, String password) {
         super(msg,Name, id, username, password);
         teacherList.add(this);

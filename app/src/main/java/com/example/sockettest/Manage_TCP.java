@@ -47,33 +47,29 @@ class REG_TCP extends AsyncTask<String, Void, Void> {
     }
 }
 
-class LOGIN_TCP extends AsyncTask<String, Void, Void> {
+class LOGIN_TCP extends AsyncTask<Packet, Void, Void> {
     public static int Status = 0; // 1: register
     PrintWriter writer;
     public static Socket s = MainActivity.s;
     @Override
-    protected Void doInBackground(String... voids) {
+    protected Void doInBackground(Packet... voids) {
         try{
-            String Username=voids[0];
-            String Password=voids[1];
-            writer = new PrintWriter(s.getOutputStream());
-            writer.write( voids[2]+"> "+Username+':'+Password+'\n');
-            Log.d("master", Username);
-            writer.flush();
+            MainActivity.objectOutputStream.writeObject(voids[0]);
             Log.d("master", "5");
         }catch (Exception e){
             Log.d("master", "6");
             Log.d("master", String.valueOf(e));
         }
-        String fromServer = null;
+        Packet fromServer = null;
         try {
-            BufferedReader in = new BufferedReader(new InputStreamReader(s.getInputStream()));
-            fromServer = in.readLine();
-        } catch (IOException e) {
+            fromServer=(Packet)MainActivity.objectInputStream.readObject();
+            Log.d("test_object",fromServer.msg);
+            if(fromServer.msg.equals("t")) {
+                Status = 1;
+            }else if (fromServer.msg.equals("f"))
+                Status=0;
+        } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();
-        }
-        if(fromServer.equals("t")) {
-            Status = 1;
         }
 //            Log.d("tcp_test", "true");
         return null;

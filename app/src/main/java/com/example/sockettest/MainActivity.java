@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.AndroidRuntimeException;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -19,21 +21,26 @@ import java.net.Socket;
 public class MainActivity extends AppCompatActivity {
 //    @SuppressLint("StaticFieldLeak")
     EditText Username, Password;
+    TextView msg;
     public static Socket s=null;
     static ObjectOutputStream objectOutputStream;
     static ObjectInputStream objectInputStream;
     public static Packet obj;
+    Handler handler;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Username = findViewById(R.id.UsernameField);
         Password = findViewById(R.id.PasswordField);
+        msg=findViewById(R.id.textView);
+        msg.setVisibility(TextView.GONE);
+        handler=new Handler(getApplicationContext().getMainLooper());
         new Thread(new Runnable(){
             public void run(){
         if (s==null)
             try {
-                s = new Socket("192.168.1.5",9999);
+                s = new Socket("192.168.1.5",9991);
                 objectOutputStream = new ObjectOutputStream(s.getOutputStream());
                 objectInputStream = new ObjectInputStream(s.getInputStream());
             } catch (IOException e) {
@@ -61,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("master", "2");
                 if (s==null)
                     try {
-                        s = new Socket("192.168.1.5",9999);
+                        s = new Socket("192.168.1.5",9991);
                         objectOutputStream = new ObjectOutputStream(s.getOutputStream());
                         objectInputStream = new ObjectInputStream(s.getInputStream());
                     } catch (IOException e) {
@@ -71,7 +78,9 @@ public class MainActivity extends AppCompatActivity {
                 String username_s = Username.getText().toString();
                 String password_s = Password.getText().toString();
                 Log.d("master", "2.5");
-                Task.doInBackground(username_s, password_s, "LOGIN");
+                Person person=new Person("login",username_s,password_s);
+                Packet send=person;
+                Task.doInBackground(send);
                 Log.d("master", "3");
                 while (true){
                     if (LOGIN_TCP.Status==1) {
@@ -82,6 +91,15 @@ public class MainActivity extends AppCompatActivity {
                         startActivity(i);
                         LOGIN_TCP.Status = 0;
                         break;
+                    }
+                    else if (LOGIN_TCP.Status==0)
+                    {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                msg.setVisibility(TextView.VISIBLE);
+                            }
+                        });
                     }
                 }
             }
@@ -95,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("master", "2");
                 if (s==null)
                     try {
-                        s = new Socket("192.168.1.5",9999);
+                        s = new Socket("192.168.1.5",9991);
                         objectOutputStream = new ObjectOutputStream(s.getOutputStream());
                         objectInputStream = new ObjectInputStream(s.getInputStream());
                     } catch (IOException e) {
