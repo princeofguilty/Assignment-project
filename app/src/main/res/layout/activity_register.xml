@@ -36,7 +36,7 @@
         android:layout_height="76dp"
         android:layout_marginBottom="156dp"
         android:onClick="Register_button_call"
-        android:text="Register Student"
+        android:text="Register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.47"
