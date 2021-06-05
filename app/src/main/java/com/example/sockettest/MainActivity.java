@@ -129,7 +129,8 @@ public class MainActivity extends AppCompatActivity {
                    if (REG_TCP.Status==1) {
                         Log.d("test_tcp", "about");
                         Intent i = new Intent(MainActivity.this, Register_Activity.class);
-                        //i.putExtra("username", username_s);
+//                        i.putExtra("username", username_s);
+//                        i.putExtra("type", );
                         //i.putExtra("password", password_s);
                         startActivity(i);
                         REG_TCP.Status = 0;

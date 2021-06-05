@@ -5,6 +5,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
 public class Classroom_Overview extends AppCompatActivity {
     RecyclerView Assignment_Recyclerview;
     String[] Assignments_titles, Assignments_desc, Assignments_id, Assignments_deadline;
@@ -34,6 +36,8 @@ public class Classroom_Overview extends AppCompatActivity {
             }
         }
         catch (Exception ignored){}
+        FloatingActionButton TeacherAddClassroom = findViewById(R.id.TeacherAddClassroom);
+//        if
 
         Assignment_adapter assignment_adapter = new Assignment_adapter(this, Assignments_titles, Assignments_desc, Assignments_id, Assignments_deadline);
         Assignment_Recyclerview.setAdapter(assignment_adapter);
