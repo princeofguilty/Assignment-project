@@ -25,6 +25,10 @@ public class Packet implements Serializable {
     public String toString() {
         return msg;
     }
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
     public void Clear(){
         msg = null;
         person = null;
