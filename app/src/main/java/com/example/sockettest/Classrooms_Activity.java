@@ -6,6 +6,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -19,26 +20,26 @@ public class Classrooms_Activity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         Bundle extras = getIntent().getExtras();
-//        Person p = MainActivity.fromServer.person;
-        Person p = new Person(0, "ahmed", "asd", "princ", "123");
+        Person p = MainActivity.fromServer.person;
+//        Person p = new Person(0, "ahmed", "asd", "princ", "123");
 //        // test
-        Classroom c = new Classroom();
-        c.setName("test class");
-        c.setDescribtion("hello world");
-        c.setId("123x");
-        p.JoinClassroom(c);
-        p.JoinClassroom(c);
-        p.JoinClassroom(c);
-        p.JoinClassroom(c);
-        p.JoinClassroom(c);
-        p.JoinClassroom(c);
-        p.JoinClassroom(c);
-        p.JoinClassroom(c);
-        p.JoinClassroom(c);
-        p.JoinClassroom(c);
-        Assignment as = new Assignment(new Teacher(), c, "mega", "test");
-        as.setAssignId("123");
-        c.addAssignment(as);
+//        Classroom c = new Classroom();
+//        c.setName("test class");
+//        c.setDescribtion("hello world");
+//        c.setId("123x");
+//        p.JoinClassroom(c);
+//        p.JoinClassroom(c);
+//        p.JoinClassroom(c);
+//        p.JoinClassroom(c);
+//        p.JoinClassroom(c);
+//        p.JoinClassroom(c);
+//        p.JoinClassroom(c);
+//        p.JoinClassroom(c);
+//        p.JoinClassroom(c);
+//        p.JoinClassroom(c);
+//        Assignment as = new Assignment(new Teacher(), c, "mega", "test");
+//        as.setAssignId("123");
+//        c.addAssignment(as);
 //        // end
         Classrooms_names = new String[p.joined_classes_count];
         Classrooms_Descriptions = new String[p.joined_classes_count];
@@ -61,5 +62,16 @@ public class Classrooms_Activity extends AppCompatActivity {
         CAdapter_layoutManager = new LinearLayoutManager(this);
         Classrooms_Recyclerview.setLayoutManager(CAdapter_layoutManager);
         Classrooms_Recyclerview.setHasFixedSize(true);
+    }
+
+    public void PlusButton(View v){
+        if (MainActivity.fromServer.person.type==0){
+            Intent i = new Intent(this, JoinClass.class);
+            startActivity(i);
+        }
+        else {
+            Intent i = new Intent(this, add_classroom.class);
+            startActivity(i);
+        }
     }
 }

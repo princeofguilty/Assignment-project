@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Person implements PersonInterface, Serializable {
-    private int type;
+    public int type=0;
     private String name;
     private String Username;
     private String Password;

@@ -36,7 +36,7 @@ public class Classroom_Overview extends AppCompatActivity {
             }
         }
         catch (Exception ignored){}
-        FloatingActionButton TeacherAddClassroom = findViewById(R.id.TeacherAddClassroom);
+        FloatingActionButton TeacherAddClassroom = findViewById(R.id.PLUSsignButton);
 //        if
 
         Assignment_adapter assignment_adapter = new Assignment_adapter(this, Assignments_titles, Assignments_desc, Assignments_id, Assignments_deadline);

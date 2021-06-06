@@ -13,11 +13,20 @@ import java.io.Serializable;
  */
 public class Packet implements Serializable {
     String msg;
+    String msg2;
     Person person;
     public Packet(String msg) {
         this.msg = msg;
     }
+    public Packet(String msg, String msg2) {
+        this.msg = msg;
+        this.msg2 = msg2;
+    }
     public Packet(String msg, Person person) {
+        this.msg = msg;
+        this.person = person;
+    }
+    public Packet(String msg, String msg2, Person person) {
         this.msg = msg;
         this.person = person;
     }
@@ -31,6 +40,7 @@ public class Packet implements Serializable {
     }
     public void Clear(){
         msg = null;
+        msg2 = null;
         person = null;
     }
 
