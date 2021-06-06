@@ -116,4 +116,13 @@ public class Person implements PersonInterface, Serializable {
     public void removeClassroom(Classroom c){
         JoinedClasses.remove(c);
     }
+
+    public static Person findPersonById( String id,List<Person> p){
+        for(Person i: p){
+            if (i.getUsername().equals(id)){
+                return i;
+            }
+        }
+        return null;
+    }
 }

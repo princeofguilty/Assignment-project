@@ -49,6 +49,7 @@
         android:layout_width="272dp"
         android:layout_height="83dp"
         android:layout_marginBottom="16dp"
+        android:onClick="addClassButton"
         android:text="Add Class"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

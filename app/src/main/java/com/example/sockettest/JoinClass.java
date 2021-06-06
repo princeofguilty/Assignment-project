@@ -17,5 +17,7 @@ public class JoinClass extends AppCompatActivity {
     public void joinClassButton(View v){
         EditText e = (EditText)findViewById(R.id.AddClassId);
         MainActivity.toServer = new Packet("JOINCLASS", e.getText().toString());
+        Send_Receive_TCP s = new Send_Receive_TCP();
+        s.doInBackground(MainActivity.toServer);
     }
 }

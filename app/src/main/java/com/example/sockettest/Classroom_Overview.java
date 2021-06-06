@@ -18,7 +18,7 @@ public class Classroom_Overview extends AppCompatActivity {
         setContentView(R.layout.activity_classroom_overview);
         Bundle extras = getIntent().getExtras();
         setTitle(extras.getString("classname") + " : " + extras.getString("classid"));
-        Classroom c = Classroom.findbyid(extras.getString("classid"));
+        Classroom c = Classroom.findbyid(extras.getString("classid"), MainActivity.clist);
         Assignments_titles = new String[c.getAssignmentsCount()];
         Assignments_desc = new String[c.getAssignmentsCount()];
         Assignments_id = new String[c.getAssignmentsCount()];

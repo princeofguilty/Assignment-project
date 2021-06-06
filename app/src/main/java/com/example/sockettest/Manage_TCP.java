@@ -95,6 +95,24 @@ class Student_TCP extends AsyncTask<Packet, Void, Void> {
     }
 }
 
+class Send_Receive_TCP extends AsyncTask<Packet, Void, Void> {
+    Socket s = MainActivity.s;
+    @Override
+    protected Void doInBackground(Packet... packet) {
+        try{
+            MainActivity.objectOutputStream.writeObject(packet[0]);
+        }catch (Exception e){
+            Log.d("master", String.valueOf(e));
+        }
+        try {
+            MainActivity.fromServer=(Packet)MainActivity.objectInputStream.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
+}
+
 class Teacher_TCP extends AsyncTask<Packet, Void, Void> {
     PrintWriter writer;
     Socket s = MainActivity.s;
