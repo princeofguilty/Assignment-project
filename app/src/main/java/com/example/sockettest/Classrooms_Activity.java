@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 
 public class Classrooms_Activity extends AppCompatActivity {
-    Person p= new Person(null,"ahmed", "1810", "user", "1234");
+//    Person p= new Person(null,"ahmed", "1810", "user", "1234");
     RecyclerView Classrooms_Recyclerview;
     String[] Classrooms_names;
     String[] Classrooms_Descriptions;
@@ -18,7 +18,10 @@ public class Classrooms_Activity extends AppCompatActivity {
     RecyclerView.LayoutManager CAdapter_layoutManager;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // test
+        Bundle extras = getIntent().getExtras();
+//        Person p = MainActivity.fromServer.person;
+        Person p = new Person(0, "ahmed", "asd", "princ", "123");
+//        // test
         Classroom c = new Classroom();
         c.setName("test class");
         c.setDescribtion("hello world");
@@ -33,18 +36,19 @@ public class Classrooms_Activity extends AppCompatActivity {
         p.JoinClassroom(c);
         p.JoinClassroom(c);
         p.JoinClassroom(c);
-        Assignment as = new Assignment(new Teacher(null), c, "mega", "test");
+        Assignment as = new Assignment(new Teacher(), c, "mega", "test");
         as.setAssignId("123");
         c.addAssignment(as);
+//        // end
         Classrooms_names = new String[p.joined_classes_count];
         Classrooms_Descriptions = new String[p.joined_classes_count];
         Classrooms_Id = new String[p.joined_classes_count];
-        // end
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classrooms);
 
         Classrooms_Recyclerview = findViewById(R.id.Classrooms_Recycleview);
         int i =0;
+        if(p.getJoinedClasses()!=null)
         for(Classroom cl : p.getJoinedClasses()){
             Classrooms_names[i] = cl.getName();
             Classrooms_Descriptions[i] = cl.getDescribtion();

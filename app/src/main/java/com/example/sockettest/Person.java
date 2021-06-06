@@ -1,9 +1,10 @@
 package com.example.sockettest;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Person extends Packet implements PersonInterface {
+public class Person implements PersonInterface, Serializable {
     private int type;
     private String name;
     private String Username;
@@ -13,16 +14,31 @@ public class Person extends Packet implements PersonInterface {
     private List<Classroom> JoinedClasses = new ArrayList<Classroom>();
     private List<Person> personList = new ArrayList<Person>();
 
-    public Person(String msg){ super(msg);}
+    public Person(){}
 
-    public Person(String msg, String username, String password) {
-        super(msg);
+    public Person(String username, String password) {
+
         Username = username;
         Password = password;
     }
 
-    public Person(String msg, int type, String name, String id, String username, String password) {
-        super(msg);
+    public Person(Person p) {
+        Username = p.Username;
+        Password = p.Password;
+        id = p.id;
+        joined_classes_count = p.joined_classes_count;
+        type = p.type;
+        joined_classes_count = p.joined_classes_count;
+        JoinedClasses = new ArrayList<Classroom>();
+        if (p.joined_classes_count!=0){
+            for(Classroom c : p.JoinedClasses){
+                JoinedClasses.add(c);
+            }
+        }
+    }
+
+    public Person( int type, String name, String id, String username, String password) {
+
         this.type = type;
         this.name = name;
         Username = username;
@@ -30,8 +46,7 @@ public class Person extends Packet implements PersonInterface {
         this.id = id;
     }
 
-    public Person(String msg,String Name, String Id, String username, String password){
-        super(msg);
+    public Person(String Name, String Id, String username, String password){
         setName(Name);
         setId(Id);
         setPassword(password);

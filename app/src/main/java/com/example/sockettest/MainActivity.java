@@ -20,6 +20,9 @@ import java.net.Socket;
 
 public class MainActivity extends AppCompatActivity {
 //    @SuppressLint("StaticFieldLeak")
+    //
+    public static Packet fromServer = null;
+    //
     EditText Username, Password;
     TextView msg;
     public static Socket s=null;
@@ -40,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             public void run(){
         if (s==null)
             try {
-                s = new Socket("192.168.1.5",9991);
+                s = new Socket("192.168.1.4",9992);
                 objectOutputStream = new ObjectOutputStream(s.getOutputStream());
                 objectInputStream = new ObjectInputStream(s.getInputStream());
             } catch (IOException e) {
@@ -68,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("master", "2");
                 if (s==null)
                     try {
-                        s = new Socket("192.168.1.5",9991);
+                        s = new Socket("192.168.1.4",9992);
                         objectOutputStream = new ObjectOutputStream(s.getOutputStream());
                         objectInputStream = new ObjectInputStream(s.getInputStream());
                     } catch (IOException e) {
@@ -78,16 +81,14 @@ public class MainActivity extends AppCompatActivity {
                 String username_s = Username.getText().toString();
                 String password_s = Password.getText().toString();
                 Log.d("master", "2.5");
-                Person person=new Person("login",username_s,password_s);
-                Packet send=person;
-                Task.doInBackground(send);
+                Person person=new Person(username_s,password_s);
+//                Packet send=new Packet("login", person);
+                Task.doInBackground(new Packet("login", person));
                 Log.d("master", "3");
                 while (true){
                     if (LOGIN_TCP.Status==1) {
                         Log.d("test_tcp", "about");
                         Intent i = new Intent(MainActivity.this, Classrooms_Activity.class);
-                        i.putExtra("username", username_s);
-                        i.putExtra("password", password_s);
                         startActivity(i);
                         LOGIN_TCP.Status = 0;
                         break;
@@ -113,7 +114,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("master", "2");
                 if (s==null)
                     try {
-                        s = new Socket("192.168.1.5",9991);
+                        s = new Socket("192.168.1.4",9992);
                         objectOutputStream = new ObjectOutputStream(s.getOutputStream());
                         objectInputStream = new ObjectInputStream(s.getInputStream());
                     } catch (IOException e) {

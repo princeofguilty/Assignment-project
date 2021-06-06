@@ -3,7 +3,7 @@ package com.example.sockettest;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Assignment {
+public class Assignment implements java.io.Serializable {
     private static int FINISHED=1, NOT_FINISHED=0, GRADED=2;
     private String title="New Assignment";
     private String id="asid34";

@@ -59,8 +59,9 @@ private int person;
         //if(type.toLowerCase().equals("register student"))
          if (person==0){
             Log.d("tcp_test", "here");
-            Person per = new Person("register",person,name, id, username, password);
-             MainActivity.obj=per;
+            Person per = new Person(person,name, id, username, password);
+            Packet pack = new Packet("register", per);
+             MainActivity.obj=pack;
              new Thread(new Runnable(){
                  public void run(){
                      Log.d("master", "2");
@@ -90,9 +91,10 @@ private int person;
         }
         //else if(type.toLowerCase().equals("register teacher"))
         else if (person==1){
-            Person s = new Teacher("register",person,name, id, username, password);
+            Person s = new Teacher(person,name, id, username, password);
             Teacher_TCP st = new Teacher_TCP();
-            st.doInBackground(s);
+            Packet pack = new Packet("register", s);
+            st.doInBackground(pack);
             Log.d("tcp_test", st.toString());
         }
 

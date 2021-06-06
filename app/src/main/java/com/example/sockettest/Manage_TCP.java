@@ -14,6 +14,7 @@ import java.net.Socket;
 
 class REG_TCP extends AsyncTask<String, Void, Void> {
     public static int Status = 0; // 1: register
+    
     PrintWriter writer;
     public static Socket s = MainActivity.s;
     @Override
@@ -27,16 +28,17 @@ class REG_TCP extends AsyncTask<String, Void, Void> {
             writer.flush();*/
             Packet p=new Packet(voids[0]);
             MainActivity.objectOutputStream.writeObject(p);
+            MainActivity.objectOutputStream.flush();
             Log.d("master", "5");
         }catch (Exception e){
             Log.d("master", "6");
             Log.d("master", String.valueOf(e));
         }
-        Packet fromServer = null;
+        MainActivity.fromServer = null;
         try {
-            fromServer=(Packet)MainActivity.objectInputStream.readObject();
-            Log.d("test_object",fromServer.msg);
-            if(fromServer.msg.equals("t")) {
+            MainActivity.fromServer=(Packet)MainActivity.objectInputStream.readObject();
+            Log.d("test_object",MainActivity.fromServer.msg);
+            if(MainActivity.fromServer.msg.equals("t")) {
                 Status = 1;
             }
         } catch (IOException | ClassNotFoundException e) {
@@ -55,20 +57,22 @@ class LOGIN_TCP extends AsyncTask<Packet, Void, Void> {
     protected Void doInBackground(Packet... voids) {
         try{
             MainActivity.objectOutputStream.writeObject(voids[0]);
+            MainActivity.objectOutputStream.flush();
             Log.d("master", "5");
         }catch (Exception e){
             Log.d("master", "6");
             Log.d("master", String.valueOf(e));
         }
-        Packet fromServer = null;
         try {
-            fromServer=(Packet)MainActivity.objectInputStream.readObject();
-            Log.d("test_object",fromServer.msg);
-            if(fromServer.msg.equals("t")) {
+            MainActivity.fromServer=(Packet)MainActivity.objectInputStream.readObject();
+            Log.d("test_object",MainActivity.fromServer.msg);
+            if(MainActivity.fromServer.msg.equals("t")) {
                 Status = 1;
-            }else if (fromServer.msg.equals("f"))
+//                Packet
+            }else if (MainActivity.fromServer.msg.equals("f"))
                 Status=0;
         } catch (IOException | ClassNotFoundException e) {
+            Log.d("try", "1");
             e.printStackTrace();
         }
 //            Log.d("tcp_test", "true");
@@ -91,11 +95,11 @@ class Student_TCP extends AsyncTask<Packet, Void, Void> {
     }
 }
 
-class Teacher_TCP extends AsyncTask<Person, Void, Void> {
+class Teacher_TCP extends AsyncTask<Packet, Void, Void> {
     PrintWriter writer;
     Socket s = MainActivity.s;
     @Override
-    protected Void doInBackground(Person... teacher) {
+    protected Void doInBackground(Packet... teacher) {
         try{
             MainActivity.objectOutputStream.writeObject(teacher[0]);
         }catch (Exception e){
