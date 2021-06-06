@@ -9,15 +9,11 @@ public class Assignment implements java.io.Serializable {
     private String id="asid34";
     private int State = NOT_FINISHED;
     private String Description="description lorem ipsum \n description lorem ipsum \n description lorem ipsum \n ";
-    private Classroom classOfAssignment;
     private String deadline="today";
-    private Teacher owner;
 
-    public Assignment(Teacher t, Classroom c,String title, String description){
+    public Assignment(String title, String description){
         this.title = title;
-        this. Description = description;
-        owner = t;
-        classOfAssignment = c;
+        this.Description = description;
     }
 
     public String getTitle() {

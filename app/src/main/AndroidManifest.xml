@@ -14,7 +14,8 @@
         android:theme="@style/Theme.SocketTest"
         android:usesCleartextTraffic="true"
         tools:targetApi="m">
-        <activity android:name=".JoinClass"></activity>
+        <activity android:name=".Add_Assignment"></activity>
+        <activity android:name=".JoinClass" />
         <activity android:name=".add_classroom" />
         <activity android:name=".Classroom_Overview" />
         <activity android:name=".Classrooms_Activity" />

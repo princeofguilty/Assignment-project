@@ -41,27 +41,27 @@ public class Classrooms_Activity extends AppCompatActivity {
 //        as.setAssignId("123");
 //        c.addAssignment(as);
 //        // end
-        Classrooms_names = new String[p.joined_classes_count];
-        Classrooms_Descriptions = new String[p.joined_classes_count];
-        Classrooms_Id = new String[p.joined_classes_count];
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_classrooms);
+            Classrooms_names = new String[p.joined_classes_count];
+            Classrooms_Descriptions = new String[p.joined_classes_count];
+            Classrooms_Id = new String[p.joined_classes_count];
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_classrooms);
 
-        Classrooms_Recyclerview = findViewById(R.id.Classrooms_Recycleview);
-        int i =0;
-        if(p.getJoinedClasses()!=null)
-        for(Classroom cl : p.getJoinedClasses()){
-            Classrooms_names[i] = cl.getName();
-            Classrooms_Descriptions[i] = cl.getDescribtion();
-            Classrooms_Id[i] = cl.getId();
-            i++;
-        }
+            Classrooms_Recyclerview = findViewById(R.id.Classrooms_Recycleview);
+            int i = 0;
 
-        Classroom_adapter CAdapter = new Classroom_adapter(this, Classrooms_names, Classrooms_Descriptions, Classrooms_Id);
-        Classrooms_Recyclerview.setAdapter(CAdapter);
-        CAdapter_layoutManager = new LinearLayoutManager(this);
-        Classrooms_Recyclerview.setLayoutManager(CAdapter_layoutManager);
-        Classrooms_Recyclerview.setHasFixedSize(true);
+            for (Classroom cl : p.getJoinedClasses()) {
+                Classrooms_names[i] = cl.getName();
+                Classrooms_Descriptions[i] = cl.getDescribtion();
+                Classrooms_Id[i] = cl.getId();
+                i++;
+            }
+
+            Classroom_adapter CAdapter = new Classroom_adapter(this, Classrooms_names, Classrooms_Descriptions, Classrooms_Id);
+            Classrooms_Recyclerview.setAdapter(CAdapter);
+            CAdapter_layoutManager = new LinearLayoutManager(this);
+            Classrooms_Recyclerview.setLayoutManager(CAdapter_layoutManager);
+            Classrooms_Recyclerview.setHasFixedSize(true);
     }
 
     public void PlusButton(View v){

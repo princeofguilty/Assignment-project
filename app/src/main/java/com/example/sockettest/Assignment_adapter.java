@@ -38,6 +38,7 @@ public class Assignment_adapter extends RecyclerView.Adapter<Assignment_adapter.
         holder.assign_desc.setText(Assign_description[position]);
         holder.assign_id.setText(Assign_id[position]);
         holder.assign_deadline.setText(Deadline[position]);
+
     }
 
     @Override

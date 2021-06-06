@@ -37,7 +37,7 @@ class REG_TCP extends AsyncTask<String, Void, Void> {
         MainActivity.fromServer = null;
         try {
             MainActivity.fromServer=(Packet)MainActivity.objectInputStream.readObject();
-            Log.d("test_object",MainActivity.fromServer.msg);
+//            Log.d("test_object",MainActivity.fromServer.msg);
             if(MainActivity.fromServer.msg.equals("t")) {
                 Status = 1;
             }
