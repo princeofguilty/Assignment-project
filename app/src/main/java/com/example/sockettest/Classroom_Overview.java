@@ -64,14 +64,14 @@ public class Classroom_Overview extends AppCompatActivity {
                         @Override
                         public void run() {
                             add_b.setEnabled(false);
-                            add_b.setVisibility(Button.GONE);
+                            add_b.setVisibility(Button.INVISIBLE);
                         }
                     });
                 }
             }
         });
     }
-    
+
 
     public void addAssignmentToClassroom(View v){
         if (MainActivity.fromServer.person.type==1){
