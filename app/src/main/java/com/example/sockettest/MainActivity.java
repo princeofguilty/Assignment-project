@@ -48,7 +48,7 @@ public class MainActivity extends AppCompatActivity {
             public void run(){
         if (s==null)
             try {
-                s = new Socket("192.168.1.4",9990);
+                s = new Socket("192.168.1.5",9990);
                 objectOutputStream = new ObjectOutputStream(s.getOutputStream());
                 objectInputStream = new ObjectInputStream(s.getInputStream());
             } catch (IOException e) {
@@ -76,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("master", "2");
                 if (s==null)
                     try {
-                        s = new Socket("192.168.1.4",9990);
+                        s = new Socket("192.168.1.5",9990);
                         objectOutputStream = new ObjectOutputStream(s.getOutputStream());
                         objectInputStream = new ObjectInputStream(s.getInputStream());
                     } catch (IOException e) {
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("master", "2");
                 if (s==null)
                     try {
-                        s = new Socket("192.168.1.4",9990);
+                        s = new Socket("192.168.1.5",9990);
                         objectOutputStream = new ObjectOutputStream(s.getOutputStream());
                         objectInputStream = new ObjectInputStream(s.getInputStream());
                     } catch (IOException e) {
