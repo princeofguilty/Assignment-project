@@ -16,8 +16,8 @@ public class Classroom_Overview extends AppCompatActivity {
     RecyclerView Assignment_Recyclerview;
     String[] Assignments_titles, Assignments_desc, Assignments_id, Assignments_deadline;
     RecyclerView.LayoutManager Assign_Adapter_layoutManager;
-    Button add_b;
-    Handler handler;
+    View add_b;
+//    Handler handler;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,11 @@ public class Classroom_Overview extends AppCompatActivity {
         Bundle extras = getIntent().getExtras();
         setTitle(extras.getString("classname") + " : " + extras.getString("classid"));
         Classroom c = Classroom.findbyid(extras.getString("classid"), MainActivity.fromServer.person.getJoinedClasses());
-
+        add_b=findViewById(R.id.floatingActionButton2);
+        if (MainActivity.fromServer.person.type==0) {
+//            add_b.setEnabled(false);
+            add_b.setVisibility(View.GONE);
+        }
 
             Assignments_titles = new String[c.getAssignmentsCount()];
             Assignments_desc = new String[c.getAssignmentsCount()];
@@ -54,22 +58,22 @@ public class Classroom_Overview extends AppCompatActivity {
         Assign_Adapter_layoutManager = new LinearLayoutManager(this);
         Assignment_Recyclerview.setLayoutManager(Assign_Adapter_layoutManager);
         Assignment_Recyclerview.setHasFixedSize(true);
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                add_b=findViewById(R.id.floatingActionButton2);
-                if (MainActivity.fromServer.person.type==0)
-                {
-                    handler.post(new Runnable() {
-                        @Override
-                        public void run() {
-                            add_b.setEnabled(false);
-                            add_b.setVisibility(Button.INVISIBLE);
-                        }
-                    });
-                }
-            }
-        });
+//        new Thread(new Runnable() {
+//            @Override
+//            public void run() {
+//                add_b=findViewById(R.id.floatingActionButton2);
+//                if (MainActivity.fromServer.person.type==0)
+//                {
+//                    handler.post(new Runnable() {
+//                        @Override
+//                        public void run() {
+//                            add_b.setEnabled(false);
+//                            add_b.setVisibility(View.GONE);
+//                        }
+//                    });
+//                }
+//            }
+//        });
     }
 
 
