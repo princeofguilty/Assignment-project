@@ -8,12 +8,17 @@ public class Classroom implements java.io.Serializable {
     private String id;
     private String Describtion;
     private int AssignmentsCount=0;
+    private List<Person> persons=new ArrayList<Person>();
     private List<Student> studentsList= new ArrayList<Student>();
     private List<Teacher> teachersList= new ArrayList<Teacher>();
     private List<Assignment> listofAssignments = new ArrayList<Assignment>();
 
     public void addStudent(Student s){
         studentsList.add(s);
+    }
+
+    public void addPerson(Person p){
+        persons.add(p);
     }
 
     public void addTeacher(Teacher s){
@@ -79,6 +84,10 @@ public class Classroom implements java.io.Serializable {
 
     public void removeStudent(Student s){
         studentsList.remove(s);
+    }
+
+    public void removePerson(Person p){
+        persons.remove(p);
     }
 
     public void removeTeacher(Teacher s){

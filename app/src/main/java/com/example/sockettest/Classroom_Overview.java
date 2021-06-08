@@ -17,7 +17,7 @@ public class Classroom_Overview extends AppCompatActivity {
     String[] Assignments_titles, Assignments_desc, Assignments_id, Assignments_deadline;
     RecyclerView.LayoutManager Assign_Adapter_layoutManager;
     View add_b;
-    Classroom c;
+    //Classroom c;
     //Bundle extras = getIntent().getExtras();
 //    Handler handler;
 
@@ -26,23 +26,23 @@ public class Classroom_Overview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classroom_overview);
         Bundle extras = getIntent().getExtras();
-        extras = getIntent().getExtras();
+        //extras = getIntent().getExtras();
         setTitle(extras.getString("classname") + " : " + extras.getString("classid"));
-        c = Classroom.findbyid(extras.getString("classid"), MainActivity.fromServer.person.getJoinedClasses());
+        MainActivity.c = Classroom.findbyid(extras.getString("classid"), MainActivity.fromServer.person.getJoinedClasses());
         add_b=findViewById(R.id.floatingActionButton2);
         if (MainActivity.fromServer.person.type==0) {
 //            add_b.setEnabled(false);
             add_b.setVisibility(View.GONE);
         }
 
-            Assignments_titles = new String[c.getAssignmentsCount()];
-            Assignments_desc = new String[c.getAssignmentsCount()];
-            Assignments_id = new String[c.getAssignmentsCount()];
-            Assignments_deadline = new String[c.getAssignmentsCount()];
+            Assignments_titles = new String[MainActivity.c.getAssignmentsCount()];
+            Assignments_desc = new String[MainActivity.c.getAssignmentsCount()];
+            Assignments_id = new String[MainActivity.c.getAssignmentsCount()];
+            Assignments_deadline = new String[MainActivity.c.getAssignmentsCount()];
             Assignment_Recyclerview = findViewById(R.id.Assignment_Recycleview);
             int i = 0;
             try {
-                for (Assignment as : c.getListofAssignments()) {
+                for (Assignment as : MainActivity.c.getListofAssignments()) {
 
                     Assignments_titles[i] = as.getTitle();
                     Assignments_desc[i] = as.getAssignId();
@@ -83,7 +83,7 @@ public class Classroom_Overview extends AppCompatActivity {
     public void addAssignmentToClassroom(View v){
         if (MainActivity.fromServer.person.type==1){
             Intent i = new Intent(this, Add_Assignment.class);
-            i.putExtra("classid",c.getId());
+            i.putExtra("classid",MainActivity.c.getId());
             startActivity(i);
         }
     }

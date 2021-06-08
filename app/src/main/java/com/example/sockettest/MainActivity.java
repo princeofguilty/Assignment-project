@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     //
     public static Packet fromServer = null;
     public static Packet toServer = null;
+    public static Classroom  c=null;
     //
     EditText Username, Password;
     TextView msg;

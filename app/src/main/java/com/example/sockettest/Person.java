@@ -22,6 +22,14 @@ public class Person implements PersonInterface, Serializable {
         Password = password;
     }
 
+    public void setType(int type) {
+        this.type = type;
+    }
+
+    public int getType() {
+        return type;
+    }
+
     public Person(Person p) {
         Username = p.Username;
         Password = p.Password;

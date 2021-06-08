@@ -15,6 +15,19 @@ public class Packet implements Serializable {
     String msg;
     String msg2;
     Person person;
+    Assignment a;
+    Classroom c;
+
+    public Packet(String msg, Assignment a) {
+        this.msg = msg;
+        this.a = a;
+    }
+
+    public Packet(String msg, Classroom c) {
+        this.msg = msg;
+        this.c = c;
+    }
+
     public Packet(String msg) {
         this.msg = msg;
     }
@@ -44,6 +57,7 @@ public class Packet implements Serializable {
         msg = null;
         msg2 = null;
         person = null;
+        a=null;
     }
 
 }

@@ -17,6 +17,8 @@ public class Add_Assignment extends AppCompatActivity {
     private Button button;
     EditText addAssTitle;
     EditText addAssDiscreption;
+    String id;
+    Classroom c;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,8 @@ public class Add_Assignment extends AppCompatActivity {
         button.setText(makeDateString(day,month,year));
 
         Bundle extras = getIntent().getExtras();
+        id=extras.getString("classid");
+        c = Classroom.findbyid(id, MainActivity.fromServer.person.getJoinedClasses());
         Classroom c = Classroom.findbyid(extras.getString("classid"), MainActivity.fromServer.person.getJoinedClasses());
     }
 
@@ -57,9 +61,21 @@ public class Add_Assignment extends AppCompatActivity {
     }
 
     public void AddAssignmentButton(View v){
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
         Assignment a=new Assignment();
         a.setTitle(addAssTitle.getText().toString());
         a.setDescription(addAssDiscreption.getText().toString());
         a.setDeadline(button.getText().toString());
+        a.setAssignId(id);
+        c.addAssignment(a);
+                Packet assign=new Packet("addassignment",a);
+                Send_Receive_TCP s = new Send_Receive_TCP();
+                s.doInBackground(assign);
+                if (MainActivity.fromServer.msg=="t")
+                MainActivity.c=MainActivity.fromServer.c;
+            }
+        });
     }
 }
