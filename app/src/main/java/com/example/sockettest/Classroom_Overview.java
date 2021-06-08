@@ -17,6 +17,8 @@ public class Classroom_Overview extends AppCompatActivity {
     String[] Assignments_titles, Assignments_desc, Assignments_id, Assignments_deadline;
     RecyclerView.LayoutManager Assign_Adapter_layoutManager;
     View add_b;
+    Classroom c;
+    //Bundle extras = getIntent().getExtras();
 //    Handler handler;
 
     @Override
@@ -24,8 +26,9 @@ public class Classroom_Overview extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_classroom_overview);
         Bundle extras = getIntent().getExtras();
+        extras = getIntent().getExtras();
         setTitle(extras.getString("classname") + " : " + extras.getString("classid"));
-        Classroom c = Classroom.findbyid(extras.getString("classid"), MainActivity.fromServer.person.getJoinedClasses());
+        c = Classroom.findbyid(extras.getString("classid"), MainActivity.fromServer.person.getJoinedClasses());
         add_b=findViewById(R.id.floatingActionButton2);
         if (MainActivity.fromServer.person.type==0) {
 //            add_b.setEnabled(false);
@@ -80,6 +83,7 @@ public class Classroom_Overview extends AppCompatActivity {
     public void addAssignmentToClassroom(View v){
         if (MainActivity.fromServer.person.type==1){
             Intent i = new Intent(this, Add_Assignment.class);
+            i.putExtra("classid",c.getId());
             startActivity(i);
         }
     }

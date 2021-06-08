@@ -13,7 +13,7 @@ public class Assignment implements java.io.Serializable {
 
     public Assignment(String title, String description){
         this.title = title;
-        this.Description = description;
+        this. Description = description;
     }
 
     public String getTitle() {
@@ -26,6 +26,9 @@ public class Assignment implements java.io.Serializable {
 
     public void setAssignId(String id) {
         this.id = id;
+    }
+
+    public Assignment() {
     }
 
     public String getAssignId() {
