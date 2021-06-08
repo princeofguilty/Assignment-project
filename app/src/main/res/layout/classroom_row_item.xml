@@ -7,6 +7,8 @@
     android:layout_height="wrap_content"
     android:clickable="true"
     android:onClick="Class_Overview">
+    android:background="@drawable/custom_ripple"
+
 
     <TextView
         android:id="@+id/Assign_title"

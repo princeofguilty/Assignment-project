@@ -6,87 +6,77 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:clickable="false">
+    android:background="@drawable/custom_ripple"
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="100dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/open_sans_light"
+        android:text="Deadline"
+        android:textSize="24sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
     <TextView
         android:id="@+id/Assign_title"
-        android:layout_width="152dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="16dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
+        android:layout_width="257dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/open_sans_light"
         android:text="TextView"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/Assign_description"
-        android:layout_width="0dp"
+        android:layout_width="380dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/open_sans_light"
+        android:paddingBottom="50dp"
         android:text="TextView"
-        android:textAlignment="center"
+        android:textAlignment="viewStart"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.516"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Assign_title" />
-
-    <TextView
-        android:id="@+id/Assign_id"
-        android:layout_width="152dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="12dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
-        android:textSize="24sp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Assign_description" />
+        app:layout_constraintTop_toBottomOf="@+id/Assign_date" />
 
     <TextView
         android:id="@+id/Assign_date"
-        android:layout_width="152dp"
-        android:layout_height="46dp"
-        android:layout_marginStart="60dp"
-        android:layout_marginTop="12dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
+        android:layout_width="257dp"
+        android:layout_height="39dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/open_sans_light"
         android:text="TextView"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textSize="24sp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.096"
-        app:layout_constraintStart_toEndOf="@+id/Assign_id"
-        app:layout_constraintTop_toBottomOf="@+id/Assign_description" />
+        app:layout_constraintHorizontal_bias="0.368"
+        app:layout_constraintStart_toEndOf="@+id/textView3"
+        app:layout_constraintTop_toBottomOf="@+id/Assign_title" />
 
     <TextView
-        android:id="@+id/Assign_State"
-        android:layout_width="152dp"
-        android:layout_height="46dp"
+        android:id="@+id/textView2"
+        android:layout_width="54dp"
+        android:layout_height="39dp"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="8dp"
-        android:fontFamily="sans-serif-condensed-medium"
-        android:paddingLeft="10dp"
-        android:paddingTop="10dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
+        android:layout_marginTop="32dp"
+        android:fontFamily="@font/open_sans_light"
+        android:text="Title"
         android:textSize="24sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Assign_id" />
+        app:layout_constraintTop_toTopOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -64,18 +64,19 @@ public class Add_Assignment extends AppCompatActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
-        Assignment a=new Assignment();
-        a.setTitle(addAssTitle.getText().toString());
-        a.setDescription(addAssDiscreption.getText().toString());
-        a.setDeadline(button.getText().toString());
-        a.setAssignId(id);
-        c.addAssignment(a);
-                Packet assign=new Packet("addassignment",a);
+                Assignment a=new Assignment();
+                a.setTitle(addAssTitle.getText().toString());
+                a.setDescription(addAssDiscreption.getText().toString());
+                a.setDeadline(button.getText().toString());
+                a.setAssignId(id);
+                c.addAssignment(a);
+                Packet assign=new Packet("addassignment",MainActivity.fromServer.person.getName(),a);
                 Send_Receive_TCP s = new Send_Receive_TCP();
                 s.doInBackground(assign);
                 if (MainActivity.fromServer.msg=="t")
                 MainActivity.c=MainActivity.fromServer.c;
             }
-        });
+        }).start();
     }
+
 }

@@ -22,6 +22,7 @@ public class add_classroom extends AppCompatActivity {
                 EditText AddClassId = findViewById(R.id.AddClassId);
                 EditText AddClassDescription = findViewById(R.id.AddClassDescription);
                 Person temp = new Person();
+                temp.setName(MainActivity.fromServer.person.getName());
                 Classroom c = new Classroom();
                 c.setName(AddClassName.getText().toString());
                 c.setId(AddClassId.getText().toString());

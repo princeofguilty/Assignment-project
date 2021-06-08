@@ -126,8 +126,9 @@ public class Person implements PersonInterface, Serializable {
     }
 
     public static Person findPersonById( String id,List<Person> p){
+        String idx = id.toLowerCase();
         for(Person i: p){
-            if (i.getUsername().equals(id)){
+            if (i.getUsername().toLowerCase().equals(idx)){
                 return i;
             }
         }

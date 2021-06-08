@@ -23,6 +23,11 @@ public class Packet implements Serializable {
         this.a = a;
     }
 
+    public Packet(String msg, String msg2, Assignment a) {
+        this.msg = msg;
+        this.a = a;
+    }
+
     public Packet(String msg, Classroom c) {
         this.msg = msg;
         this.c = c;

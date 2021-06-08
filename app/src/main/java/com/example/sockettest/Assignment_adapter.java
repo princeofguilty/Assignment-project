@@ -12,14 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 public class Assignment_adapter extends RecyclerView.Adapter<Assignment_adapter.MyViewHolder_Assignment> {
     Context mContext;
-    String Class_name[], Assign_description[], Assign_id[], Assign_title[], Deadline[];
+    String Class_name[], Assign_description[], Assign_title[], Deadline[];
 
-    public Assignment_adapter(Context context, String assign_title[], String desc[], String id[], String deadline[])
+    public Assignment_adapter(Context context, String assign_title[], String desc[], String deadline[])
     {
         mContext = context;
         Assign_title = assign_title;
         Assign_description = desc;
-        Assign_id = id;
+//        Assign_id = id;
         Deadline = deadline;
     }
 
@@ -36,7 +36,7 @@ public class Assignment_adapter extends RecyclerView.Adapter<Assignment_adapter.
     public void onBindViewHolder(@NonNull MyViewHolder_Assignment holder, int position) {
         holder.assign_title.setText(Assign_title[position]);
         holder.assign_desc.setText(Assign_description[position]);
-        holder.assign_id.setText(Assign_id[position]);
+//        holder.assign_id.setText(Assign_id[position]);
         holder.assign_deadline.setText(Deadline[position]);
 
     }
@@ -53,7 +53,7 @@ public class Assignment_adapter extends RecyclerView.Adapter<Assignment_adapter.
             super(itemView);
             assign_title = itemView.findViewById(R.id.Assign_title);
             assign_desc = itemView.findViewById(R.id.Assign_description);
-            assign_id = itemView.findViewById(R.id.Assign_id);
+//            assign_id = itemView.findViewById(R.id.Assign_id);
             assign_deadline = itemView.findViewById(R.id.Assign_date);
             ASCL = (ConstraintLayout) itemView.findViewById(R.id.Assign_info_Constraint);
         }

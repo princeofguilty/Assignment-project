@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -17,6 +18,7 @@ public class Classroom_Overview extends AppCompatActivity {
     String[] Assignments_titles, Assignments_desc, Assignments_id, Assignments_deadline;
     RecyclerView.LayoutManager Assign_Adapter_layoutManager;
     View add_b;
+    String id, name;
     //Classroom c;
     //Bundle extras = getIntent().getExtras();
 //    Handler handler;
@@ -27,36 +29,38 @@ public class Classroom_Overview extends AppCompatActivity {
         setContentView(R.layout.activity_classroom_overview);
         Bundle extras = getIntent().getExtras();
         //extras = getIntent().getExtras();
-        setTitle(extras.getString("classname") + " : " + extras.getString("classid"));
+        id = extras.getString("classid");
+        name = extras.getString("classname");
+        setTitle(name + " : " + id);
         MainActivity.c = Classroom.findbyid(extras.getString("classid"), MainActivity.fromServer.person.getJoinedClasses());
-        add_b=findViewById(R.id.floatingActionButton2);
-        if (MainActivity.fromServer.person.type==0) {
+        add_b = findViewById(R.id.floatingActionButton2);
+        if (MainActivity.fromServer.person.type == 0) {
 //            add_b.setEnabled(false);
             add_b.setVisibility(View.GONE);
         }
 
-            Assignments_titles = new String[MainActivity.c.getAssignmentsCount()];
-            Assignments_desc = new String[MainActivity.c.getAssignmentsCount()];
-            Assignments_id = new String[MainActivity.c.getAssignmentsCount()];
-            Assignments_deadline = new String[MainActivity.c.getAssignmentsCount()];
-            Assignment_Recyclerview = findViewById(R.id.Assignment_Recycleview);
-            int i = 0;
-            try {
-                for (Assignment as : MainActivity.c.getListofAssignments()) {
+        Assignments_titles = new String[MainActivity.c.getAssignmentsCount()];
+        Assignments_desc = new String[MainActivity.c.getAssignmentsCount()];
+        Assignments_id = new String[MainActivity.c.getAssignmentsCount()];
+        Assignments_deadline = new String[MainActivity.c.getAssignmentsCount()];
+        Assignment_Recyclerview = findViewById(R.id.Assignment_Recycleview);
+        int i = 0;
+        try {
+            for (Assignment as : MainActivity.c.getListofAssignments()) {
 
-                    Assignments_titles[i] = as.getTitle();
-                    Assignments_desc[i] = as.getAssignId();
-                    Assignments_id[i] = as.getAssignId();
-                    Assignments_deadline[i] = as.getDeadline();
-                    i++;
-                }
-            } catch (Exception ignored) {
+                Assignments_titles[i] = as.getTitle();
+                Assignments_desc[i] = as.getDescription();
+//                Assignments_id[i] = as.getAssignId();
+                Assignments_deadline[i] = as.getDeadline();
+                i++;
+            }
+        } catch (Exception ignored) {
 
             FloatingActionButton TeacherAddClassroom = findViewById(R.id.PLUSsignButton);
         }
 //        if
 
-        Assignment_adapter assignment_adapter = new Assignment_adapter(this, Assignments_titles, Assignments_desc, Assignments_id, Assignments_deadline);
+        Assignment_adapter assignment_adapter = new Assignment_adapter(this, Assignments_titles, Assignments_desc, Assignments_deadline);
         Assignment_Recyclerview.setAdapter(assignment_adapter);
         Assign_Adapter_layoutManager = new LinearLayoutManager(this);
         Assignment_Recyclerview.setLayoutManager(Assign_Adapter_layoutManager);
@@ -80,11 +84,12 @@ public class Classroom_Overview extends AppCompatActivity {
     }
 
 
-    public void addAssignmentToClassroom(View v){
-        if (MainActivity.fromServer.person.type==1){
+    public void addAssignmentToClassroom(View v) {
+        if (MainActivity.fromServer.person.type == 1) {
             Intent i = new Intent(this, Add_Assignment.class);
-            i.putExtra("classid",MainActivity.c.getId());
+            i.putExtra("classid", MainActivity.c.getId());
             startActivity(i);
         }
     }
+
 }
