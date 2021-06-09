@@ -29,22 +29,7 @@ public class Person implements PersonInterface, Serializable {
     public int getType() {
         return type;
     }
-
-    public Person(Person p) {
-        Username = p.Username;
-        Password = p.Password;
-        id = p.id;
-        joined_classes_count = p.joined_classes_count;
-        type = p.type;
-        joined_classes_count = p.joined_classes_count;
-        JoinedClasses = new ArrayList<Classroom>();
-        if (p.joined_classes_count!=0){
-            for(Classroom c : p.JoinedClasses){
-                JoinedClasses.add(c);
-            }
-        }
-    }
-
+    
     public Person( int type, String name, String id, String username, String password) {
 
         this.type = type;

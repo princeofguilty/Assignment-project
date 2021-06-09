@@ -5,10 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.AndroidRuntimeException;
 import android.util.Log;
 import android.view.View;
-import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -126,21 +124,21 @@ public class MainActivity extends AppCompatActivity {
                     } catch (IOException e) {
                         Log.d("master", e.toString());
                     }
-                REG_TCP Task = new REG_TCP();
+                Check_Server_TCP Task = new Check_Server_TCP();
                 //String username_s = Username.getText().toString();
                 //String password_s = Password.getText().toString();
                 Log.d("master", "2.5");
                 Task.doInBackground("connect");
                 Log.d("master", "3");
                 while (true){
-                   if (REG_TCP.Status==1) {
+                   if (Check_Server_TCP.Status==1) {
                         Log.d("test_tcp", "about");
                         Intent i = new Intent(MainActivity.this, Register_Activity.class);
 //                        i.putExtra("username", username_s);
 //                        i.putExtra("type", );
                         //i.putExtra("password", password_s);
                         startActivity(i);
-                        REG_TCP.Status = 0;
+                        Check_Server_TCP.Status = 0;
                         break;
                     }
                 }

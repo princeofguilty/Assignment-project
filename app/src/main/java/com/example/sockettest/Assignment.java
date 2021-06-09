@@ -4,10 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Assignment implements java.io.Serializable {
-    private static int FINISHED=1, NOT_FINISHED=0, GRADED=2;
     private String title="New Assignment";
     private String id="asid34";
-    private int State = NOT_FINISHED;
     private String Description="description lorem ipsum \n description lorem ipsum \n description lorem ipsum \n ";
     private String deadline="today";
 
@@ -51,11 +49,4 @@ public class Assignment implements java.io.Serializable {
         return Description;
     }
 
-    public void setState(int state) {
-        State = state;
-    }
-
-    public int getState() {
-        return State;
-    }
 }
