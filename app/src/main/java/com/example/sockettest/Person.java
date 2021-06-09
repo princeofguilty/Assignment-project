@@ -5,16 +5,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Person implements PersonInterface, Serializable {
-    public int type=0;
+    public int type = 0;
     private String name;
     private String Username;
     private String Password;
     private String id;
-    public int joined_classes_count=0;
+    public int joined_classes_count = 0;
     private List<Classroom> JoinedClasses = new ArrayList<Classroom>();
-    private List<Person> personList = new ArrayList<Person>();
 
-    public Person(){}
+    public Person() {
+    }
 
     public Person(String username, String password) {
 
@@ -29,8 +29,8 @@ public class Person implements PersonInterface, Serializable {
     public int getType() {
         return type;
     }
-    
-    public Person( int type, String name, String id, String username, String password) {
+
+    public Person(int type, String name, String id, String username, String password) {
 
         this.type = type;
         this.name = name;
@@ -39,20 +39,11 @@ public class Person implements PersonInterface, Serializable {
         this.id = id;
     }
 
-    public Person(String Name, String Id, String username, String password){
+    public Person(String Name, String Id, String username, String password) {
         setName(Name);
         setId(Id);
         setPassword(password);
         setUsername(username);
-    }
-
-    public boolean checkUsername(String username) {
-        for(Person p: personList){
-            if (p.getUsername().equals(username)){
-                return false;
-            }
-        }
-        return true;
     }
 
     @Override
@@ -106,14 +97,15 @@ public class Person implements PersonInterface, Serializable {
         JoinedClasses.add(e);
         joined_classes_count++;
     }
-    public void removeClassroom(Classroom c){
+
+    public void removeClassroom(Classroom c) {
         JoinedClasses.remove(c);
     }
 
-    public static Person findPersonById( String id,List<Person> p){
-        String idx = id.toLowerCase();
-        for(Person i: p){
-            if (i.getUsername().toLowerCase().equals(idx)){
+    public static Person findPersonByUsername(String us, List<Person> p) {
+        String usx = us.toLowerCase();
+        for (Person i : p) {
+            if (i.getUsername().toLowerCase().equals(usx)) {
                 return i;
             }
         }

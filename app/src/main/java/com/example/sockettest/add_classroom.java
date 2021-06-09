@@ -29,7 +29,7 @@ public class add_classroom extends AppCompatActivity {
                 c.setDescribtion(AddClassDescription.getText().toString());
                 temp.JoinClassroom(c);
                 Log.d("new1", MainActivity.fromServer.person.getId());
-                Packet tp = new Packet("CREATECLASSROOM", (String)MainActivity.fromServer.person.getId(), (Person)temp);
+                Packet tp = new Packet("CREATECLASSROOM", (String)MainActivity.fromServer.person.getUsername(), (Person)temp);
                 Send_Receive_TCP s = new Send_Receive_TCP();
                 s.doInBackground(tp);
             }

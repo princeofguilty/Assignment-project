@@ -22,7 +22,7 @@ public class JoinClass extends AppCompatActivity {
             public void run() {
                 EditText classCode = findViewById(R.id.JoinClassId);
                 Log.d("tcp_test", "here");
-                Packet pack = new Packet("JOINCLASS", classCode.getText().toString(), new Person("", MainActivity.fromServer.person.getId(), "", ""));
+                Packet pack = new Packet("JOINCLASS", classCode.getText().toString(), new Person("", "", MainActivity.fromServer.person.getUsername(), ""));
                 Log.d("master", "2");
                 Send_Receive_TCP st = new Send_Receive_TCP();
                 Log.d("master", "2.5");
