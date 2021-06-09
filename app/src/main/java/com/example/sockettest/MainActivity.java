@@ -24,6 +24,8 @@ public class MainActivity extends AppCompatActivity {
     public static Packet fromServer = null;
     public static Packet toServer = null;
     public static Classroom  c=null;
+    public String ServerIP;
+    public static EditText SIP;
     //
     EditText Username, Password;
     TextView msg;
@@ -43,11 +45,13 @@ public class MainActivity extends AppCompatActivity {
         msg=findViewById(R.id.textView);
         msg.setVisibility(TextView.GONE);
         handler=new Handler(getApplicationContext().getMainLooper());
+        SIP = findViewById(R.id.ServerIP);
         new Thread(new Runnable(){
             public void run(){
+        ServerIP = SIP.getText().toString();
         if (s==null)
             try {
-                s = new Socket("192.168.1.4",9998);
+                s = new Socket(ServerIP,9998);
                 objectOutputStream = new ObjectOutputStream(s.getOutputStream());
                 objectInputStream = new ObjectInputStream(s.getInputStream());
             } catch (IOException e) {
@@ -70,12 +74,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Login(View v){
+        ServerIP = SIP.getText().toString();
         new Thread(new Runnable(){
             public void run(){
                 Log.d("master", "2");
                 if (s==null)
                     try {
-                        s = new Socket("192.168.1.4",9998);
+                        s = new Socket(ServerIP,9998);
                         objectOutputStream = new ObjectOutputStream(s.getOutputStream());
                         objectInputStream = new ObjectInputStream(s.getInputStream());
                     } catch (IOException e) {
@@ -113,12 +118,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void Register(View v){
+        ServerIP = SIP.getText().toString();
         new Thread(new Runnable(){
             public void run(){
                 Log.d("master", "2");
                 if (s==null)
                     try {
-                        s = new Socket("192.168.1.4",9998);
+                        s = new Socket(ServerIP,9998);
                         objectOutputStream = new ObjectOutputStream(s.getOutputStream());
                         objectInputStream = new ObjectInputStream(s.getInputStream());
                     } catch (IOException e) {
