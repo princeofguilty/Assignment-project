@@ -96,10 +96,16 @@ public class MainActivity extends AppCompatActivity {
                 Log.d("master", "3");
                 while (true){
                     if (LOGIN_TCP.Status==1) {
+                        handler.post(new Runnable() {
+                            @Override
+                            public void run() {
+                                msg.setVisibility(TextView.GONE);
+                        }});
                         Log.d("test_tcp", "about");
                         Intent i = new Intent(MainActivity.this, Classrooms_Activity.class);
                         startActivity(i);
-                        LOGIN_TCP.Status = 0;
+
+  //                      LOGIN_TCP.Status = 0;
                         break;
                     }
                     else if (LOGIN_TCP.Status==0)
